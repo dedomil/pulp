@@ -1,0 +1,11 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "pulp"
+main = "src/index.ts"
+compatibility_date = "2024-09-25"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pulp"
+database_id = "08e5eb3b-7151-4d60-b977-11905abeada8"
+migrations_dir = "src/database/drizzle"
