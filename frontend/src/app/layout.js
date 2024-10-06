@@ -6,6 +6,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import { AppProgressBar } from "next-nprogress-bar";
 import Header from "@/components/Header";
+import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = Bricolage_Grotesque({
   variable: "--font-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
               options={{ showSpinner: false }}
               color="hsl(var(--primary) / 0.9)"
             />
+            <Toaster />
           </QueryClientProvider>
         </ThemeProvider>
       </body>

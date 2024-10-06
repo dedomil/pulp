@@ -45,7 +45,7 @@ export default function PastebinClone() {
           onChange={(e) => setTitle(e.target.value)}
           spellCheck={false}
           placeholder="enter a title for the pulp"
-          className="text-xl py-6 text-primary/90 font-extrabold"
+          className="text-xl py-6 text-primary/85 font-bold"
         />
         <Textarea
           value={content}
@@ -53,7 +53,7 @@ export default function PastebinClone() {
           spellCheck={false}
           onChange={(e) => setContent(e.target.value)}
           placeholder="type or paste your code here..."
-          className="h-[calc(100dvh-18.7rem)] sm:h-[calc(100dvh-15.2rem)] text-primary/85 w-full font-mono font-semibold resize-none"
+          className="h-[calc(100dvh-18.7rem)] sm:h-[calc(100dvh-15.2rem)] text-primary/85 w-full font-mono font-medium resize-none"
           required
         />
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
