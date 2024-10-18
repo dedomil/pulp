@@ -8,19 +8,19 @@ import {
   SelectTrigger,
   SelectContent,
   SelectGroup,
-  SelectLabel,
   SelectItem,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useCreatePulpMutation } from "@/services/mutations";
-import Header from "@/components/Header";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
 
 export default function PastebinClone() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [language, setLanguage] = useState("txt");
+  const [_, setPulps] = useLocalStorage("pulps", []);
 
   const router = useRouter();
   const mutation = useCreatePulpMutation();
@@ -30,9 +30,11 @@ export default function PastebinClone() {
     await mutation.mutateAsync(
       { title, content, language },
       {
-        onSuccess: (data) => {
+        onSuccess: ({ msg, ...data }) => {
+          setPulps((previous) => [...previous, data]);
           router.push(data.id);
         },
+        // todo: add error handling
       }
     );
   };
