@@ -1,11 +1,12 @@
 "use client";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 import CodeMirror from "@uiw/react-codemirror";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { githubDark, githubLight } from "@uiw/codemirror-theme-github";
-import { useTheme } from "next-themes";
 
 function getLanguage(extension) {
-  switch (extension.toLowerCase()) {
+  switch (extension?.toLowerCase()) {
     case "js":
       return "javascript";
     case "jsx":
@@ -65,14 +66,31 @@ function getLanguage(extension) {
   }
 }
 
-export default function Code({ content, language, editable = false, ...props }) {
+export default function Code({
+  content,
+  language,
+  editable = false,
+  className,
+  ...props
+}) {
   const { theme } = useTheme();
   return (
-    <div className="h-[calc(100dvh-15.35rem)] p-4 overflow-x-auto bg-card text-primary/80 text-sm font-medium">
+    <div
+      className={cn(
+        "p-4 overflow-x-auto bg-card text-primary/80 text-sm font-medium",
+        className
+      )}
+    >
       <CodeMirror
         value={content}
         editable={editable}
-        basicSetup={{ foldGutter: false, lineNumbers: false }}
+        placeholder={"type or paste the text..."}
+        autoFocus={true}
+        basicSetup={{
+          foldGutter: false,
+          lineNumbers: false,
+          highlightActiveLine: false,
+        }}
         theme={theme == "light" ? githubLight : githubDark}
         {...(!getLanguage(language)
           ? { extensions: [] }

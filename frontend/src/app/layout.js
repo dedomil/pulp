@@ -1,14 +1,14 @@
 "use client";
 
 import "./globals.css";
-import { Azeret_Mono, Bricolage_Grotesque } from "next/font/google";
+import { Azeret_Mono, Red_Rose } from "next/font/google";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import { AppProgressBar } from "next-nprogress-bar";
 import Header from "@/components/Header";
 import { Toaster } from "@/components/ui/toaster";
 
-const fontSans = Bricolage_Grotesque({
+const fontSans = Red_Rose({
   variable: "--font-sans",
   weight: "variable",
   subsets: ["latin"],

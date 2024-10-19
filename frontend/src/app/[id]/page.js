@@ -115,11 +115,11 @@ export default function Page({ params }) {
   }
 
   return (
-    <main className="flex-grow container mx-auto px-4 py-6">
+    <main className="flex-grow container mx-auto px-4 py-4">
       <div className="bg-card border rounded-lg overflow-hidden">
         <div className="p-4 border-b flex justify-between items-center space-x-2">
           <Input
-            className="text-xl font-bold text-primary/85 truncate border-none"
+            className="text-xl font-semibold text-primary/90 truncate border-none px-[2px] py-0"
             spellCheck="false"
             value={title || data.title}
             placeholder={"untitled"}
@@ -145,6 +145,7 @@ export default function Page({ params }) {
           language={data.language}
           editable={creatorPulpData}
           onChange={(value) => updatePulp({ name: "content", value })}
+          className={"h-[calc(100dvh-14.6rem)]"}
         />
         <div className="p-4 border-t flex justify-between items-center text-sm text-muted-foreground">
           <span className="flex items-center">
