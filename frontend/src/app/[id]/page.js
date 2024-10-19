@@ -21,7 +21,7 @@ export default function Page({ params }) {
   const { toast } = useToast();
   const router = useRouter();
 
-  const [pulps] = useLocalStorage("pulps", []);
+  const [pulps, setPulps] = useLocalStorage("pulps", []);
   const [creatorPulpData] = pulps.filter((e) => e.id == params.id);
 
   const { isError, isPending, data } = useGetPulpQuery(params.id);
@@ -59,12 +59,12 @@ export default function Page({ params }) {
   }
 
   async function deletePulp() {
-    console.log(creatorPulpData);
     deleteMutation.mutateAsync(creatorPulpData, {
       onSuccess: () => {
         toast({
           title: "deleted successfully",
         });
+        setPulps(pulps.filter((e) => e.id != params.id));
         router.push("/");
       },
       onError: (e) => {
