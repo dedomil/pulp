@@ -11,6 +11,7 @@ app.get('/', (c) => c.json({ msg: 'server up and running' }));
 app.get('/:id', getPulpValidator, async (c) => {
 	const db = database(c.env.DB);
 	const { id } = c.req.valid('param');
+	const isRaw = c.req.query('raw');
 
 	try {
 		const pulp = await db.query.pulps.findFirst({
@@ -32,6 +33,7 @@ app.get('/:id', getPulpValidator, async (c) => {
 			.set({ views: pulp.views + 1 })
 			.where(eq(pulps.id, id));
 
+		if (isRaw == '') return c.text(pulp.content);
 		return c.json({ ...pulp, views: pulp.views + 1 });
 	} catch (error) {
 		return c.json({ msg: "couldn't fetch pulp" }, 500);
